@@ -56,11 +56,20 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    address: 'smtp.mailgun.org',
     port: 587,
-    enable_starttls_auto: true,
+    domain: 'sandboxebbee629a05a4384a70c0bf47c7a3c76.mailgun.org',
     authentication: 'plain',
-    user_name: 'heroku.miriam23@gmail.com',
-    password: 'como@gu@'
+    user_name: 'postmaster@sandboxebbee629a05a4384a70c0bf47c7a3c76.mailgun.org',
+    password: '3baa1d6b1ab5b3cbf5ad8a9c0c2318c4'
   }
+
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.gmail.com',
+  #   port: 587,
+  #   enable_starttls_auto: true,
+  #   authentication: 'plain',
+  #   user_name: 'heroku.miriam23@gmail.com',
+  #   password: '*********'
+  # }
 end
