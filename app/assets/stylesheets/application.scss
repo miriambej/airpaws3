@@ -26,7 +26,7 @@ a {
 }
 
 .navbar-default .navbar-brand {
-  background-color: #FF5A5F;
+  color: #FF5A5F;
   font-size: 2em;
   font-weight: 400;
 }
@@ -76,19 +76,25 @@ a {
 }
 
 .btn.btn-form {
-  border: 1px solid #ff5a5f;
-  background-color: #ff5a5f;
+  border: 1px solid #00A699;
+  background-color: #00A699;
 }
 
 .btn.btn-form:active {
   outline: none;
-  border-color: #e00007;
-  background-color: #e00007;
+  border-color: #066165;
+  background-color: #066165;
 }
 
-.btn.btn-normal {
-  border: 1px solid #ff5a5f;
-  background-color: #ff5a5f;
+.btn.btn-facebook {
+  border: 1px solid #3B5998;
+  background-color: #3B5998;
+}
+
+.btn.btn-facebook:active {
+  outline: none;
+  border-color: #2d467b;
+  background-color: #2d467b;
 }
 
 //AVATAR
