@@ -61,6 +61,6 @@ Rails.application.configure do
     enable_starttls_auto: true,
     authentication: 'plain',
     user_name: 'heroku.miriam23@gmail.com',
-    password: '*****'
+    password: Rails.application.secrets.gm_1
   }
 end
