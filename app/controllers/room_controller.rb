@@ -1,5 +1,6 @@
 class RoomController < ApplicationController
 before_action :set_room, except: [:index, :new, :create] #this means before every action, run the set_room first, so we do not need to repeat the code in every def needed
+before_action :authenticate_user!, except: [:show] #if user want to go to index page to update the room they need to log in, except show because you can open a room without authenticate because that is public.
   def index
     @rooms = current_user.rooms #return all the rooms to the current user
   end
@@ -9,7 +10,15 @@ before_action :set_room, except: [:index, :new, :create] #this means before ever
   end
 
   def create
-    @room = current_user.rooms.build(room_params)
+    @room = current_user.rooms.build(room_params) #allow the user to create those parameters
+    if @room.save
+      redirect_to listing_room_path(@room), notice: "Saved.." #notice is a flash message will it show saved.
+    else
+      render :new, notice: "Something went wrong..."
+    end
+  end
+
+  def show
   end
 
   def listing
@@ -32,6 +41,12 @@ before_action :set_room, except: [:index, :new, :create] #this means before ever
   end
 
   def update
+    if @room.update(room_params)
+      flash[:notice] = "Saved..." #this means if the user saved succesfully any of the pricing, description, etc, it will show it was saved.
+    else
+      flash[:notice] = "Something went wrong..."
+    end
+    redirect_to(fallback_location: request.referer) #we redirect them to the current place they were.
   end
 
   private
