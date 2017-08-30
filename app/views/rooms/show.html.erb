@@ -110,9 +110,37 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
     <hr/>
+
+    <!-- Google map -->
+    <div class="row">
+      <div id="map" style="width: 100%; height: 400px">
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script>
+        function initialize() {
+          var location = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %>};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: location,
+            zoom: 14
+          });
+
+          var marker = new google.maps.Marker({ //this is to put the red marker in location
+            position: location,
+            map:map
+          });
+
+          var infoWindow = new google.maps.InfoWindow({ //to display the photo on the map
+            content: '<div id="content"><%= image_tag @room.cover_photo(:thumb) %></div>'
+          });
+          infoWindow.open(map, marker);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize)
+        </script>
+      </div>
+    </div>
 </div>
 
   <!-- RIGHT PANEL -->
