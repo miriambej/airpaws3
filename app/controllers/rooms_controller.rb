@@ -1,4 +1,4 @@
-class RoomController < ApplicationController
+class RoomsController < ApplicationController
 before_action :set_room, except: [:index, :new, :create] #this means before every action, run the set_room first, so we do not need to repeat the code in every def needed
 before_action :authenticate_user!, except: [:show] #if user want to go to index page to update the room they need to log in, except show because you can open a room without authenticate because that is public.
   def index

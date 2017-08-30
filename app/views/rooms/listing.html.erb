@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'room_menu' %>
+  </div>
+
+  <div class="col-md-9">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        Listing
+      </div>
+
+      <div class="panel-body">
+        <div class="container">
+          <%= form_for @room do |f| %>
+
+            <div class="row">
+
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <label>Home Type</label>
+                  <%= f.select :home_type, [["Apartment", "Apartment"], ["House", "House" ]],
+                  id: "home_type", prompt: "Select...", class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <label>Accommodate</label>
+                  <%= f.select :accommodate, [["1", 1], ["2", 2 ], ["3", 3 ], ["4+", 4 ]],
+                  id: "accommodate", prompt: "Select...", class: "form-control" %>
+                </div>
+              </div>
+
+            </div>
+            <div> <%= f.submit "Save", class: "btn btn-normal" %></div>
+          <% end %>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
