@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
 before_action :set_room, except: [:index, :new, :create] #this means before every action, run the set_room first, so we do not need to repeat the code in every def needed
 before_action :authenticate_user!, except: [:show] #if user want to go to index page to update the room they need to log in, except show because you can open a room without authenticate because that is public.
+before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update] #if user wants to update a listing that it is not with its id, he/she would not be able to do it.
   def index
     @rooms = current_user.rooms #return all the rooms to the current user
   end
@@ -33,6 +34,7 @@ before_action :authenticate_user!, except: [:show] #if user want to go to index 
   end
 
   def photo_upload
+    @photos = @room.photos
   end
 
   def amenities
@@ -53,6 +55,10 @@ before_action :authenticate_user!, except: [:show] #if user want to go to index 
   private
   def set_room
     @room = Room.find(params[:id]) #to go to the specific room
+  end
+
+  def is_authorised
+    redirect_to root_path, alert: "You don't have permission" unless current_user.id == @room.user_id
   end
 
   def room_params
