@@ -21,6 +21,7 @@ before_action :is_authorised, only: [:listing, :pricing, :description, :photo_up
   end
 
   def show
+    @photos = @room.photos #its going to return all the photos that we have for the specific room.
   end
 
   def listing
@@ -46,7 +47,7 @@ before_action :is_authorised, only: [:listing, :pricing, :description, :photo_up
   def update
 
     new_params = room_params #if room is not ready, you choose the rooms params
-    new_params = room_params.merge(active: true) if is_ready_room #if the room is active(ready status),then, you merge the active attribute to the rooms param with the value of true and then you pass the new params into the new params below. 
+    new_params = room_params.merge(active: true) if is_ready_room #if the room is active(ready status),then, you merge the active attribute to the rooms param with the value of true and then you pass the new params into the new params below.
 
     if @room.update(new_params)
       flash[:notice] = "Saved..." #this means if the user saved succesfully any of the pricing, description, etc, it will show it was saved.
