@@ -14,7 +14,8 @@ before_action :authenticate_user!, except: [:show] #if user want to go to index 
     if @room.save
       redirect_to listing_room_path(@room), notice: "Saved.." #notice is a flash message will it show saved.
     else
-      render :new, notice: "Something went wrong..."
+      flash[:alert] = "Something went wrong..."
+      render :new
     end
   end
 
@@ -44,9 +45,9 @@ before_action :authenticate_user!, except: [:show] #if user want to go to index 
     if @room.update(room_params)
       flash[:notice] = "Saved..." #this means if the user saved succesfully any of the pricing, description, etc, it will show it was saved.
     else
-      flash[:notice] = "Something went wrong..."
+      flash[:alert] = "Something went wrong..."
     end
-    redirect_to(fallback_location: request.referer) #we redirect them to the current place they were.
+    redirect_back(fallback_location: request.referer) #we redirect them to the current place they were.
   end
 
   private
