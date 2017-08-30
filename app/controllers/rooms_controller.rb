@@ -44,7 +44,11 @@ before_action :is_authorised, only: [:listing, :pricing, :description, :photo_up
   end
 
   def update
-    if @room.update(room_params)
+
+    new_params = room_params #if room is not ready, you choose the rooms params
+    new_params = room_params.merge(active: true) if is_ready_room #if the room is active(ready status),then, you merge the active attribute to the rooms param with the value of true and then you pass the new params into the new params below. 
+
+    if @room.update(new_params)
       flash[:notice] = "Saved..." #this means if the user saved succesfully any of the pricing, description, etc, it will show it was saved.
     else
       flash[:alert] = "Something went wrong..."
@@ -59,6 +63,10 @@ before_action :is_authorised, only: [:listing, :pricing, :description, :photo_up
 
   def is_authorised
     redirect_to root_path, alert: "You don't have permission" unless current_user.id == @room.user_id
+  end
+
+  def is_ready_room
+    !@room.active && !@room.price.blank? && !@room.listing_name.blank? && !@room.address.blank?
   end
 
   def room_params
