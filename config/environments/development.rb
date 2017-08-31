@@ -64,4 +64,17 @@ Rails.application.configure do
     user_name: 'heroku.miriam23@gmail.com',
     password: Rails.application.secrets.gm_1
   }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    path: ':class/:attachment/:id/:style/:filename',
+    s3_host_name: 's3-ap-southeast-2.amazonaws.com',
+    s3_credentials: {
+      bucket: 'airpaws',
+      access_key_id: Rails.application.secrets.am_1,
+      secret_access_key: Rails.application.secrets.am_1,
+      s3_region: 'ap-southeast-2'
+    }
+  }
+
 end
