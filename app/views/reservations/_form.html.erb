@@ -1,13 +1,49 @@
-<%= form_for([@room, @room.reservations.new]) do |f| %>
-  <%= f.text_field :start_date %>
-  <%= f.text_field :end_date %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span><i class="fa fa-bolt" style="color: #ffb400"></i> <%= @room.price %></span>
+    <span class="pull-right">Per Night</span>
+  </div>
+  <div class="panel-body">
+
+    <%= form_for([@room, @room.reservations.new]) do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Check In</label>
+          <%= f.text_field :start_date, readonly: true, placeholder: "Start Date", class: "form-control datepicker" %>
+        </div>
+        <div class="col-md-6">
+          <label>Check Out</label>
+          <%= f.text_field :end_date, readonly: true, placeholder: "End Date", class: "form-control datepicker" %>
+        </div>
+      </div>
+
+      <div id="preview">
+        <table class="reservation-table">
+          <body>
+            <tr>
+              <td>Price</td>
+              <td class="text-right">$<%= @room.price %></td>
+            </tr>
+            <tr>
+              <td>Night(s)</td>
+              <td class="text-right">x 10</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td class="text-right">$140</td>
+            </tr>
+          </body>
+        </table>
+      </div>
 
 
-  <br/>
-  <%= f.submit "Book Now", class: "btn btn-normal btn-block" %>
+      <br/>
 
-  <%=  %>
-<% end %>
+      <%= f.submit "Book Now", class: "btn btn-normal btn-block" %>
+    <% end %>
+
+  </div>
+</div>
 
 <script>
   $(function() {
