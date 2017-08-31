@@ -86,14 +86,14 @@
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-          <%= @photos.each do |photo| %>
+          <% @photos.each do |photo| %>
           <li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>
           <% end %>
         </ol>
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-          <%= @photos.each do |photo| %>
+          <% @photos.each do |photo| %>
             <div class="item <%= 'active' if photo.id == @photos[0].id %>">
               <%= image_tag photo.image.url() %>
             </div>
