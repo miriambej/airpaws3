@@ -71,8 +71,8 @@ Rails.application.configure do
     s3_host_name: 's3-ap-southeast-2.amazonaws.com',
     s3_credentials: {
       bucket: 'airpaws',
-      access_key_id: Rails.application.secrets.am_1,
-      secret_access_key: Rails.application.secrets.am_1,
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"], # Rails.application.secrets.am_1,
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"], #Rails.application.secrets.am_1,
       s3_region: 'ap-southeast-2'
     }
   }
