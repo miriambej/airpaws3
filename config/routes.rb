@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   end
   # if you type /your_pet_trips it will run the reservations controller and your_pet_trips action.
   get '/your_pet_trips' => 'reservations#your_pet_trips'
+  get '/your_reservations' => 'reservations#your_reservations'
 
 end
