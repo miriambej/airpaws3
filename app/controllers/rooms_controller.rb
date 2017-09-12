@@ -77,7 +77,7 @@ before_action :is_authorised, only: [:listing, :pricing, :description, :photo_up
   end
 
   private
-
+  #if you get the reservation start date greater than the start date? and the end date of that reservation less than the end date and if the size is greater than zero, that means we can found one reservation inside, then we return true, that means we have a conflict.
   def is_conflict(start_date, end_date, room)
       check = room.reservations.where("? < start_date AND end_date < ?", start_date, end_date)
       check.size > 0? true : false

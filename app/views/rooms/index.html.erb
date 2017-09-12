@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-md-3">
     <ul class="sidebar-list">
+      <!-- the current listing is the only one that can be active -->
       <li class="sidebar-item"><%= link_to "Your Listings", rooms_path, class: "sidebar-link-active" %></li>
-      <li class="sidebar-item"><%= link_to "Your Reservations", rooms_path, class: "sidebar-link-active" %></li>
+      <li class="sidebar-item"><%= link_to "Your Reservations", rooms_path, class: "sidebar-link" %></li>
     </ul>
   </div>
 

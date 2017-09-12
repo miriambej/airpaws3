@@ -22,6 +22,11 @@ class ReservationsController < ApplicationController
     redirect_to room
   end
 
+  # All reservations belong to current_user, we got the trips
+  def your_pet_trips
+      @trips = current_user.reservations.order(start_date: :asc)
+  end
+
   private
   def reservation_params
     params.require(:reservation).permit(:start_date, :end_date) #we do not need to pass user_id and room_id because we are getting them from @reservation.room = room.
