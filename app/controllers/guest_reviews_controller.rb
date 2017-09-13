@@ -1,5 +1,5 @@
 class GuestReviewsController < ApplicationController
-
+# copied from HostReviewsController and modified
 
   def create
     #Check if reservation exist (room_id, host_id, host_id)

@@ -2,7 +2,7 @@
   <div class="col-md-3">
     <ul class="sidebar-list">
       <li class="sidebar-item"><%= link_to "Your Listings", rooms_path, class: "sidebar-link" %></li>
-      <li class="sidebar-item"><%= link_to "Your Reservations", rooms_path, class: "sidebar-link" %></li>
+      <li class="sidebar-item"><%= link_to "Your Reservations", your_reservations_path, class: "sidebar-link" %></li>
       <!-- the current listing is the only one that can be active -->
       <li class="sidebar-item"><%= link_to "Your Pet Trips", your_pet_trips_path, class: "sidebar-link-active" %></li>
     </ul>
@@ -25,14 +25,18 @@
               <%= image_tag trip.room.cover_photo(:thumb) %>
               <% end %>
             </div>
-            <div class="col-md-8">
-              <%= link_to trip.room.listing_name, room_path(trip.room) %>
-              <span class="pull-right text-center">
-                <%= image_tag avatar_url(trip.room.user), class: "img-circle avatar-medium" %> <br/>
+            <div class="col-md-5">
+              <%= link_to trip.room.listing_name, room_path(trip.room) %> <br/><br/>
+              <span>
+                <%= image_tag avatar_url(trip.room.user), class: "img-circle avatar-small" %>
                 <%= link_to user_path(trip.room.user) do %>
                   <%= trip.room.user.fullname %>
                 <% end %>
               </span>
+            </div>
+            <div class="col-md-3 text-right">
+              <!-- for every single trip we will pass the reservation table, that's why in the guest_form we can use the reservation variable there -->
+              <%= render partial: "reviews/guest_form", locals: {reservation: trip} %>
             </div>
           </div>
           <hr/>
