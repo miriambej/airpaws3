@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     resources :photos, only: [:create, :destroy]
     resources :reservations, only: [:create] #we put it here so when we do the reservations it falls to the room id
   end
+
+  resources :guest_reviews, only: [:create, :destroy]
+  resources :host_reviews, only: [:create, :destroy]
   # if you type /your_pet_trips it will run the reservations controller and your_pet_trips action.
   get '/your_pet_trips' => 'reservations#your_pet_trips'
   get '/your_reservations' => 'reservations#your_reservations'
