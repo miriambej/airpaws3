@@ -22,6 +22,7 @@ before_action :is_authorised, only: [:listing, :pricing, :description, :photo_up
 
   def show
     @photos = @room.photos #its going to return all the photos that we have for the specific room.
+    @guest_reviews = @room.guest_reviews
   end
 
   def listing

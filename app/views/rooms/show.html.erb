@@ -114,6 +114,24 @@
     </div>
     <hr/>
 
+    <!-- REVIEWS -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>
+          <!-- we can get from here the guest reviews because it was added to the room controller under show -->
+          <%= pluralize(@guest_reviews.count, "Review") %>
+          <!-- Display average ratings -->
+          <span id="average_rating"></span>
+        </h3>
+        <div class="container">
+          <div><%= render "reviews/guest_list" %></div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <hr/>
+
     <!-- Google map -->
     <div class="row">
       <div id="map" style="width: 100%; height: 400px">
