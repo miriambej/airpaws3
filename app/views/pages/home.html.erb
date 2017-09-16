@@ -1,0 +1,17 @@
+<!-- copied and modified from listings on the users view home.html.erb -->
+<!--  @rooms variable is from pages controller-->
+
+<div class="row">
+  <% @rooms.each do |room| %>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading preview">
+          <%= image_tag room.cover_photo(:medium) %>
+        </div>
+        <div class="panel-body">
+          <%= link_to room.listing_name, room %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

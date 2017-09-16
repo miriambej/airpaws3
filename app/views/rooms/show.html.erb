@@ -144,12 +144,14 @@
             zoom: 14
           });
 
-          var marker = new google.maps.Marker({ //this is to put the red marker in location
+          var marker = new google.maps.Marker({
+             //this is to put the red marker in location
             position: location,
             map:map
           });
 
-          var infoWindow = new google.maps.InfoWindow({ //to display the photo on the map
+          var infoWindow = new google.maps.InfoWindow({
+            //  to display the photo on the map
             content: '<div id="content"><%= image_tag @room.cover_photo(:thumb) %></div>'
           });
           infoWindow.open(map, marker);
