@@ -1,9 +1,20 @@
 <div id="main">
   <div id="left">
     <!-- SEARCH PANEL -->
+    <!-- button to show the hide div. -->
+    <div class="row">
+      <!-- this puts the button in the middle of the page -->
+      <div class="col-md-offset-4 col-md-4">
+        <button id="filter" class="btn btn-default" data-toggle="collapse" data-target="#collapsePanel">
+          More filters <i class="fa fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+
     <div class="row">
       <br/>
-      <div id="collapsePanel">
+      <!-- class collapse is from bootstrap, that means it hides the whole div by default -->
+      <div class="collapse" id="collapsePanel">
         <%= search_form_for @search, url: search_path do |f| %>
 
           <div class="row">
@@ -94,6 +105,44 @@
 
   <div id="right">
     <!-- GOOGLE MAP WILL BE HERE -->
+
+    <div id="map" style="width: 100%; height: 100%"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jlzzH8v6DX-UPIWTsBBLyE0LwdocCIk" type="text/javascript"></script>
+    <script>
+      function initialize(){
+        var location = {lat: 44.5403, lng: -78.5463}
+        // if we have at least one room to display
+        <% if @arrRooms.length > 0 %>
+          location = {lat: <%= @arrRooms[0].latitude %>, lng: <%= @arrRooms[0].longitude %>}
+        <% end %>
+        //created a map with center location above which is by default, otherwise if we have a room, is going to be the center location of the first room of the above array.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: location,
+          zoom: 12
+        });
+
+        var marker, inforwindow;
+
+        //create markers for every single room
+        <% @arrRooms.each do |room| %>
+          marker = new google.maps.Marker({
+            position: {lat: <%= room.latitude %>, lng: <%= room.longitude %>},
+            //passing the map above
+            map: map
+          });
+
+          inforwindow = new google.maps.InfoWindow({
+            content: "<div class='map_price'>$" + <%= room.price %> + "</div>"
+          });
+          //once you get the info window, which is the map and the marker above.
+          inforwindow.open(map, marker);
+        <% end %>
+      }
+      //once you load your google map, is going to run the initialize function.
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
   </div>
 </div>
 
@@ -115,6 +164,18 @@
     onSelect: function(selected) {
       $('#start_date').datepicker("option", "maxDate", selected);
     }
+  });
+
+  var open = true;
+
+  $('#filter').click(function(){
+    if (open){
+      $('#filter').html("More filters <i class='fa fa-chevron-up'></i>")
+    } else {
+      $('#filter').html("More filters <i class='fa fa-chevron-down'></i>")
+    }
+  // this means if open is true, after running the function, it will return false, and if it is false, it is going to return true.
+    open = !open;
   });
 
 </script>
