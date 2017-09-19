@@ -1,0 +1,6 @@
+// what it does, instead of reloading the whole search.html.erb page, it will re-render the below code only.
+
+$('#room_listing').html('<%= j render partial: "rooms/rooms_list", locals: {rooms: @arrRooms} %>')
+
+//it trasnfer @arrRooms to json data
+initialize(<%= raw @arrRooms.to_json %>)
