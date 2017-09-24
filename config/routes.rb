@@ -6,7 +6,13 @@ Rails.application.routes.draw do
               path_names: {sign_in: 'login', sign_out: 'logout', edit: 'profile', sign_up: 'registration'}, #this is to change the path ie., whenever they sign in will be /login if they signup it will be /registration
               controllers: {omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations'}
 
-  resources :users, only: [:show] #we want to create the path for showing user information
+  resources :users, only: [:show] do #we want to create the path for showing user information
+    member do
+      post '/verify_phone_number' => 'users#verify_phone_number'
+      patch '/update_phone_number' => 'users#update_phone_number'
+    end
+  end
+  
   resources :rooms, except: [:edit] do
     member do   #we will run every single action of specfic room id
       get 'listing'
