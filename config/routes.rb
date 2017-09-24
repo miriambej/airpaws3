@@ -30,4 +30,8 @@ Rails.application.routes.draw do
 
   get 'search' => 'pages#search'
 
+  #--------------------
+  # 'dashboard' you can name it anything you want
+  get 'dashboard' => 'dashboards#index'
+
 end
