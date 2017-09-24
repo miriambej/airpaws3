@@ -71,3 +71,7 @@ gem 'geocoder', '~> 1.4'
 gem 'jquery-ui-rails', '~> 5.0'
 #For the advance search system
 gem 'ransack', '~> 1.7'
+
+# second part of AirPaws2
+
+gem 'twilio-ruby', '~> 4.11.1'
