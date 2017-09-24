@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
   # I needed to change the default behaviour by overwrite the method after_sign_in_path_for so everytime a user logs in, it will be re-directed to dashboard page.
   def after_sign_in_path_for(resource_or_scope)
-
+    dashboard_path
   end
 
   def configure_permitted_parameters
